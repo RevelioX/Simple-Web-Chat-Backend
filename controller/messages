@@ -1,0 +1,7 @@
+const getMessages = async (req,res,next) => {
+    
+}
+
+const postMessage = (req,res,next) => {
+
+}
