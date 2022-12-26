@@ -3,6 +3,11 @@ const message = require("./routers/message.js");
 const router = require("./routers/message");
 const connectDB = require("./db/connect");
 const app = express();
+const bodyParser = require("body-parser");
+
+const jsonParser = bodyParser.json(); 
+
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 async function startApp(){
     try{
@@ -16,7 +21,7 @@ async function startApp(){
 }
 
 startApp();
-app.use("/chat",router)
+app.use("/chat",jsonParser,router)
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
