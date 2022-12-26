@@ -1,9 +1,12 @@
 const express = require("express");
 const message = require("./routers/message.js");
+const router = require("./routers/message");
+const connectDB = require("./db/connect");
 const app = express();
 
-function startApp(){
+async function startApp(){
     try{
+        await connectDB()
         app.listen(4000);
         console.log("Server listening on 4000");
     }
@@ -13,5 +16,7 @@ function startApp(){
 }
 
 startApp();
-app.use("/chat",message)
+app.use("/chat",router)
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
 
