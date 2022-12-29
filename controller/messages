@@ -15,4 +15,8 @@ const postMessage = AsyncWrapper(async (req,res) => {
         res.status(201).json({ message })    
 })
 
-module.exports = {getMessages,postMessage}
+const deleteMessages = async (req,res,next) => {
+    const messages = await Message.remove({})
+    res.status(200).json({messages});
+}
+module.exports = {getMessages,postMessage,deleteMessages}
