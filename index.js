@@ -6,18 +6,21 @@ const app = express();
 const bodyParser = require("body-parser");
 const {createServer} = require("http");
 const {Server} = require("socket.io");
+const path = require("path")
+
+const htmlPath = path.join(__dirname, 'html');
 
 const jsonParser = bodyParser.json(); 
 
 const httpServer = createServer(app);
 
 const io = new Server(httpServer,{
-    cors:{
-        origin: "http://localhost:3000",
-        methods: ["GET", "POST"],
-        allowedHeaders: ["my-custom-header"],
-        credentials: true
-    }
+    //cors:{
+    //    origin: "http://localhost:3000",
+    //    methods: ["GET", "POST"],
+    //    allowedHeaders: ["my-custom-header"],
+    //    credentials: true
+    //}
 })
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -34,6 +37,7 @@ async function startApp(){
 }
 
 startApp();
+app.use(express.static(htmlPath))
 app.use("/messages",jsonParser,router)
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
