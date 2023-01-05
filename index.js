@@ -6,9 +6,6 @@ const app = express();
 const bodyParser = require("body-parser");
 const {createServer} = require("http");
 const {Server} = require("socket.io");
-const path = require("path")
-
-const htmlPath = path.join(__dirname, 'html');
 
 const jsonParser = bodyParser.json(); 
 
@@ -16,7 +13,11 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer,{
     cors:{
+<<<<<<< HEAD
         origin: ["http://localhost:3000","https://simple-chat-frontend.onrender.com"],
+=======
+        origin: "http://localhost:3000",
+>>>>>>> parent of a4de9b4 (added the frontend build)
         methods: ["GET", "POST"],
         allowedHeaders: ["my-custom-header"],
         credentials: true
@@ -37,7 +38,6 @@ async function startApp(){
 }
 
 startApp();
-app.use(express.static(htmlPath))
 app.use("/messages",jsonParser,router)
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
