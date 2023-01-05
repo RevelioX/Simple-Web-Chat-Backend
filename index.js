@@ -15,12 +15,12 @@ const jsonParser = bodyParser.json();
 const httpServer = createServer(app);
 
 const io = new Server(httpServer,{
-    //cors:{
-    //    origin: ["http://localhost:3000","https://simple-chat-frontend.onrender.com"],
-    //    methods: ["GET", "POST"],
-    //    allowedHeaders: ["my-custom-header"],
-    //    credentials: true
-    //}
+    cors:{
+        origin: ["http://localhost:3000","https://simple-chat-frontend.onrender.com"],
+        methods: ["GET", "POST"],
+        allowedHeaders: ["my-custom-header"],
+        credentials: true
+    }
 })
 
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
