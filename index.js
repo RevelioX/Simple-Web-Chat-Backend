@@ -44,7 +44,7 @@ app.use(express.urlencoded({extended: false}))
 
 io.on("connection", (socket) => {console.log("Usuario Conectado")
 socket.on("message",(msg) => {
-    console.log("SOCKET:" , JSON.parse(msg))
+    console.log(JSON.parse(msg))
     socket.broadcast.emit("Send_msg",msg);
 },
 socket.on("userName", (username) => {console.log(username)})
