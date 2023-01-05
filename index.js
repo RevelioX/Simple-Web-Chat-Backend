@@ -6,6 +6,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const {createServer} = require("http");
 const {Server} = require("socket.io");
+const cors = require("cors");
 
 const jsonParser = bodyParser.json(); 
 
@@ -37,6 +38,7 @@ startApp();
 app.use("/messages",jsonParser,router)
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
+app.use(cors());
 
 io.on("connection", (socket) => {console.log("Usuario Conectado")
 socket.on("message",(msg) => {
