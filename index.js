@@ -39,7 +39,12 @@ app.use("/messages",jsonParser,router)
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
-    origin: "https://simple-chat-frontend.onrender.com"
+    cors:{
+        origin: ["http://localhost:3000","https://simple-chat-frontend.onrender.com"],
+        methods: ["GET", "POST"],
+        allowedHeaders: ["my-custom-header"],
+        credentials: true
+    }
 }));
 
 io.on("connection", (socket) => {console.log("Usuario Conectado")
