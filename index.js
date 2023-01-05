@@ -38,7 +38,9 @@ startApp();
 app.use("/messages",jsonParser,router)
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-app.use(cors());
+app.use(cors({
+    origin: "https://simple-chat-frontend.onrender.com"
+}));
 
 io.on("connection", (socket) => {console.log("Usuario Conectado")
 socket.on("message",(msg) => {
