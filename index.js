@@ -42,7 +42,7 @@ app.use(cors({
     cors:{
         origin: ["http://localhost:3000","https://simple-chat-frontend.onrender.com"],
         methods: ["GET", "POST"],
-        allowedHeaders: ["my-custom-header"],
+        allowedHeaders: ["my-custom-header",'Access-Control-Allow-Origin'],
         credentials: true
     }
 }));
