@@ -35,17 +35,15 @@ async function startApp(){
 }
 
 startApp();
-app.use("/messages",jsonParser,cors(),router)
+app.use((req, res, next) => {
+    res.append('Access-Control-Allow-Origin', ['*']);
+    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+app.use("/messages",jsonParser,router)
 app.use(express.json())
-app.use(express.urlencoded({extended: false}))
-app.use(cors({
-    cors:{
-        origin: ["http://localhost:3000","https://simple-chat-frontend.onrender.com"],
-        methods: ["GET", "POST"],
-        allowedHeaders: ["my-custom-header",'Access-Control-Allow-Origin'],
-        credentials: true
-    }
-}));
+app.use(express.urlencoded({extended: false}));
 
 io.on("connection", (socket) => {console.log("Usuario Conectado")
 socket.on("message",(msg) => {
