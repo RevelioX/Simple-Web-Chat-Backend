@@ -35,7 +35,7 @@ async function startApp(){
 }
 
 startApp();
-app.use("/messages",jsonParser,router)
+app.use("/messages",jsonParser,cors(),router)
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 app.use(cors({
